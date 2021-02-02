@@ -1,0 +1,43 @@
+name: Build and deploy jekyll site
+
+on:
+  push:
+    branches:
+      - main
+      # - source
+      # It is highly recommended that you only run this action on push to a
+      # specific branch, eg. master or source (if on *.github.io repo)
+
+jobs:
+  jekyll_build_deploy:
+    runs-on: ubuntu-16.04 # can change this to ubuntu-latest if you prefer
+    steps:
+      - name: 📂 setup
+        uses: actions/checkout@v2
+
+        # include the lines below if you are using jekyll-last-modified-at
+        # or if you would otherwise need to fetch the full commit history
+        # however this may be very slow for large repositories!
+        # with:
+        # fetch-depth: '0'
+      - name: 💎 setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0 # can change this to 2.7 or whatever version you prefer
+      
+      - name: 🔨 install dependencies & build site
+        run: 
+          gem install jekyll bundler
+          bundle exec jekyll build
+
+      - name: 🚀 deploy build files to gh-pages
+        env: 
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run :
+          cd _posts
+          git config --global user.email "weboni83@gmail.com"
+          git config --global user.name "ten"
+          git init
+          git add -A
+          git commit -m 'deploy with vuepress'
+          git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git main:gh-pages

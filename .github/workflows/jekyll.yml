@@ -26,7 +26,7 @@ jobs:
           ruby-version: 2.6 # can change this to 2.7 or whatever version you prefer
 
       - name: 🔨 install dependencies & build site
-        uses: limjh16/jekyll-action-ts@v2
+        uses: weboni83/weboni83.github.io@v2
         with:
           enable_cache: true
           ### Enables caching. Similar to https://github.com/actions/cache.
@@ -65,7 +65,7 @@ jobs:
           ### Flags accepted can be found here https://jekyllrb.com/docs/configuration/options/#build-command-options
 
       - name: 🚀 deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: weboni83/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site

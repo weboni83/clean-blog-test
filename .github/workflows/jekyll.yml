@@ -1,26 +1,24 @@
-name: Jekyll site CI
+name: Build and deploy Jekyll site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - master
 
 jobs:
-  build:
-
+  github-pages:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
-        # Specify the target branch (optional)
+      - uses: actions/checkout@v2
+      # Use GitHub Actions' cache to shorten build times and decrease load on servers.
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
         
-    - uses: helaili/jekyll-action@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        target_branch: 'gh-pages'
+    - uses: helaili/jekyll-action@2.0.2
+        env:
+          # Ideally use GITHUB_TOKEN but it gives error for this action.
+          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}

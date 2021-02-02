@@ -65,7 +65,7 @@ jobs:
           ### Flags accepted can be found here https://jekyllrb.com/docs/configuration/options/#build-command-options
 
       - name: 🚀 deploy
-        uses: weboni83/actions-gh-pages@v3
+        uses: weboni83/weboni83.github.io@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site

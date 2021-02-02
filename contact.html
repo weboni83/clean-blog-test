@@ -7,7 +7,7 @@ form: true
 ---
 
 <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
-<form name="sentMessage" id="contactForm" novalidate>
+<form name="sentMessage" id="contactForm" novalidate action="https://getform.io/f/d2b38a2a-30a7-4146-8d8a-78e54f1194c3" method="POST">
   <div class="control-group">
     <div class="form-group floating-label-form-group controls">
       <label>Name</label>
@@ -18,7 +18,7 @@ form: true
   <div class="control-group">
     <div class="form-group floating-label-form-group controls">
       <label>Email Address</label>
-      <input type="email" class="form-control" placeholder="Email Address" name="_replyto" required data-validation-required-message="Please enter your email address.">
+      <input type="email" class="form-control" placeholder="Email Address" name="email" required data-validation-required-message="Please enter your email address.">
       <p class="help-block text-danger"></p>
     </div>
   </div>
@@ -28,17 +28,17 @@ form: true
       <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
       <p class="help-block text-danger"></p>
     </div>
-  </div>
+  </div> -->
   <div class="control-group">
     <div class="form-group floating-label-form-group controls">
       <label>Message</label>
-      <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+      <textarea rows="5" class="form-control" placeholder="Message" name="message" required data-validation-required-message="Please enter a message."></textarea>
       <p class="help-block text-danger"></p>
     </div>
-  </div> -->
+  </div>
   <br>
   <div id="success"></div>
   <div class="form-group">
-    <button type="submit" class="btn btn-primary" value="Send">Send</button>
+    <button type="submit" class="btn btn-primary">Send</button>
   </div>
 </form>

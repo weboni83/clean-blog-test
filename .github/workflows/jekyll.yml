@@ -15,7 +15,6 @@ jobs:
       - name: 📂 setup
         uses: actions/checkout@v2
         with:
-          repository: ${GITHUB_REPOSITORY} 
           token: ${{secrets.ACCESS_TOKEN}} 
           path: main
 

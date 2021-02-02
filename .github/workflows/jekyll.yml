@@ -10,7 +10,7 @@ on:
 
 jobs:
   jekyll_build_deploy:
-    runs-on: ubuntu-16.04 # can change this to ubuntu-latest if you prefer
+    runs-on: windows-latest # can change this to ubuntu-latest if you prefer
     steps:
       - name: 📂 setup
         uses: actions/checkout@v2

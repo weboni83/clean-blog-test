@@ -25,9 +25,12 @@ jobs:
         with:
           ruby-version: 3.0.0 # can change this to 2.7 or whatever version you prefer
       
-      - name: 🔨 install dependencies & build site
+      - name: 🔨 install dependencies
         run: 
           gem install jekyll bundler
+          
+      - name: 📝 build site
+        run: 
           bundle exec jekyll build
 
       - name: 🚀 deploy build files to gh-pages

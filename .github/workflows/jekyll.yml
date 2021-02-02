@@ -28,14 +28,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
           
-      - name: 🔨 install dependencies
-        run: 
-          bundle install
-          
-      - name: 📝 build site
-        run: 
-          set -e
-          bundle exec jekyll build
+      # Standard usage
+      - uses:  lemonarc/jekyll-action@1.0.0
 
       - name: 🚀 deploy build files to gh-pages
         env: 
